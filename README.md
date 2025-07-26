@@ -2,7 +2,7 @@
 
 ## Description
 
-`cerealise` est un package R développé dans le cadre du projet de fin de module "Traitement Statistique avec R" à l’ENSAE (ISEP 2, année 2025).  
+`packageprojet` est un package R développé dans le cadre du projet de fin de module "Traitement Statistique avec R" à l’ENSAE (ISEP 2, année 2025).  
 Il permet de traiter, nettoyer, convertir et analyser les données de consommation alimentaire issues de l’enquête EHCVM (1ère édition - Sénégal), notamment à partir de la base des céréales.
 
 ## Fonctionnalités principales
