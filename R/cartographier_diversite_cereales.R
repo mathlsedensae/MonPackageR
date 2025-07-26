@@ -4,18 +4,20 @@
 #' a partir de la base menage, puis le projette sur une carte a partir d'un fichier shapefile des regions.
 #'
 #' @param base_menage Un data.frame contenant au moins les colonnes `region` et `indice_div_cereales`.
-#' @param shapefile_path Chemin d'acces complet au fichier shapefile des regions (.shp).
+#' @param regions_sf Objet sf contenant les polygones des regions (shapefile deja charge).
 #'
 #' @return Une carte ggplot2 affichant l'indice moyen par region.
 #' @importFrom sf st_read st_centroid st_coordinates
 #' @importFrom ggplot2 ggplot geom_sf geom_text scale_fill_viridis_c theme_minimal labs theme element_blank element_text
 #' @export
 cartographier_diversite_cereales <- function(base_menage, regions_sf) {
-  # Vérifier que regions_sf est un objet sf
+  
+  # Verifier que regions_sf est un objet sf
   if (!inherits(regions_sf, "sf")) {
-    stop("L'objet 'regions_sf' doit etre un objet sf (shapefile deja charge).")
+    stop("L'objet 'regions_sf' doit etre un objet sf.")
   }
-
+  
+  # Calcul de l'indice moyen par region
   indice_par_region <- base_menage %>%
     dplyr::group_by(region) %>%
     dplyr::summarise(
@@ -23,25 +25,29 @@ cartographier_diversite_cereales <- function(base_menage, regions_sf) {
       .groups = "drop"
     ) %>%
     dplyr::mutate(
+      region = as.character(region),
       region_nom = dplyr::case_when(
         region == "SAINT-LOUIS" ~ "SAINT LOUIS",
-        TRUE ~ as.character(region)
+        TRUE ~ region
       )
     )
-
+  
+  # Jointure avec le shapefile
   regions_sf_joined <- dplyr::left_join(
     regions_sf,
     indice_par_region,
     by = c("NOMREG" = "region_nom")
   )
-
+  
+  # Calcul des centroïdes pour l'affichage des labels
   regions_sf_joined <- regions_sf_joined %>%
     dplyr::mutate(centroid = sf::st_centroid(geometry)) %>%
     dplyr::mutate(
       lon = sf::st_coordinates(centroid)[,1],
       lat = sf::st_coordinates(centroid)[,2]
     )
-
+  
+  # Construction de la carte
   carte <- ggplot2::ggplot(regions_sf_joined) +
     ggplot2::geom_sf(ggplot2::aes(fill = indice_moyen), color = "black", size = 0.5) +
     ggplot2::geom_text(
@@ -64,6 +70,6 @@ cartographier_diversite_cereales <- function(base_menage, regions_sf) {
       plot.subtitle = ggplot2::element_text(hjust = 0.5, size = 12),
       legend.title = ggplot2::element_text(face = "bold")
     )
-
+  
   return(carte)
 }
