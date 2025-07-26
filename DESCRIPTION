@@ -1,0 +1,50 @@
+Package: packageprojet
+Type: Package
+Title: Analyse et Validation des Données de Consommation Alimentaire
+Version: 0.1.0
+Authors@R: 
+    c(
+      person(given = "Mouhamet", family = "SECK", role = c("aut", "cre"), email = "seckmouhamet125@gmail.com"),
+      person(given = "Math", family = "SOCE", role = "aut", email = "lsedoisg5@gmail.com"),
+      person(given = "Cheikh Mouhammadou Moustapha", family = "NDIAYE", role = "aut", email = "moustaphandiaye0491@gmail.com"),
+      person(given = "Trésor Ngarmoundou", family = "RIRADJIM", role = "aut", email = "tresorriradjimngarmoundou@gmail.com")
+    )
+Description: Ce package fournit des outils pour l'analyse et la validation des données 
+    de consommation alimentaire, incluant le chargement, le nettoyage, l'analyse 
+    et la visualisation des données d'enquêtes.
+License: MIT + file LICENSE
+URL: https://github.com/mathlsedensae/packageprojet
+BugReports: https://github.com/mathlsedensae/packageprojet/issues
+Depends: 
+    R (>= 4.0.0)
+Imports:
+    dplyr,
+    magrittr,
+    rlang,
+    labelled,
+    haven,
+    readxl,
+    VIM,
+    ggplot2,
+    modeest,
+    stats,
+    moments,
+    scales,
+    data.table,
+    openxlsx,
+    utils,
+    sf
+Suggests:
+    devtools,
+    roxygen2,
+    usethis,
+    testthat (>= 3.0.0),
+    janitor,
+    skimr,
+    stringr,
+    summarytools,
+    tidyr,
+    rmarkdown
+Encoding: UTF-8
+RoxygenNote: 7.3.2
+Config/testthat/edition: 3
