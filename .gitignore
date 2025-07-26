@@ -1,1 +1,44 @@
-.Rproj.user
+# Fichiers de session R
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+
+# Données d'environnement R
+.Renviron
+
+# Fichiers temporaires R Markdown
+*.utf8.md
+*.knit.md
+
+# Caches knitr
+*_cache/
+cache/
+
+# Fichiers produits par R CMD build
+*.tar.gz
+
+# Dossier produit par R CMD check
+*.Rcheck/
+
+# Exemples automatiques
+*-Ex.R
+
+# Fichiers spécifiques à RStudio
+.Rproj.user/
+*.Rproj
+
+# Jetons d'authentification OAuth2
+.httr-oauth
+
+# Vignettes produites
+vignettes/*.html
+vignettes/*.pdf
+
+# Autres fichiers temporaires courants
+.DS_Store
+Thumbs.db
+
+# Fichiers de log ou de debug (si utilisés)
+*.log
+*.tmp
